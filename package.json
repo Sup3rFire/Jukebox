@@ -10,7 +10,7 @@
   "author": "SuperFire",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v19.3.0",
+    "get-mp3-duration": "^1.0.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

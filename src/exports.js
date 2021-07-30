@@ -1,5 +1,5 @@
 /**
- * @type {{ servers: Object.<string, { nickname?: string }, music: string[]}}
+ * @type {{ servers: Object.<string, { nickname?: string }, music: () => string[]}}
  * @module exports
  */
 module.exports = {
@@ -30,9 +30,10 @@ module.exports = {
     Youmu: {},
     Yuyuko: {},
   },
-  music: (() => {
+  music: () => {
     const fs = require("fs");
+    const path = require("path")
 
-    // TODO: Read music path
-  })(),
+    return fs.readdirSync(`${__dirname}/../music/`).filter(fp => !fp.startsWith(".")).map(fp => path.resolve(__dirname, "../music", fp));
+  },
 };

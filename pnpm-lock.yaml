@@ -4,12 +4,12 @@ specifiers:
   '@types/node': ^16.4.7
   dotenv: ^10.0.0
   eslint: ^7.31.0
+  get-mp3-duration: ^1.0.0
   prettier: ^2.3.2
-  uWebSockets.js: github:uNetworking/uWebSockets.js#v19.3.0
   winston: ^3.3.3
 
 dependencies:
-  uWebSockets.js: github.com/uNetworking/uWebSockets.js/7bf0faac5859fef2d113e83d22803f7833774c11
+  get-mp3-duration: 1.0.0
   winston: 3.3.3
 
 devDependencies:
@@ -470,6 +470,10 @@ packages:
   /functional-red-black-tree/1.0.1:
     resolution: {integrity: sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=}
     dev: true
+
+  /get-mp3-duration/1.0.0:
+    resolution: {integrity: sha1-Rx78oPnkkw54ZgFvYHhYL0zpNMs=}
+    dev: false
 
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -951,9 +955,3 @@ packages:
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
-
-  github.com/uNetworking/uWebSockets.js/7bf0faac5859fef2d113e83d22803f7833774c11:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/7bf0faac5859fef2d113e83d22803f7833774c11}
-    name: uWebSockets.js
-    version: 19.3.0
-    dev: false

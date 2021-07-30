@@ -44,11 +44,12 @@ if (cluster.isMaster) {
 
     name = m.name;
 
-    logger.info(`${name} online`);
     process.removeListener("message", awaitSetup);
 
     global.name = name;
     global.logger = require("./logger")(name);
+
+    require("./server");
   };
 
   process.on("message", awaitSetup);

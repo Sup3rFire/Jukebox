@@ -9,6 +9,12 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
-    "no-unused-vars": "off",
+    "no-var": "error",
+    "no-unused-vars": "warn",
+    "prefer-const": "warn"
   },
+  "globals": {
+    "logger": "writable",
+    "name": "writable"
+  }
 };
