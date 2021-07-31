@@ -12,7 +12,7 @@ if (cluster.isMaster) {
    */
   const currentServers = [];
 
-  const numCPUs = process.env.DEBUG_CPUS || require("os").cpus().length;
+  const numCPUs = +process.env.DEBUG_CPUS || require("os").cpus().length;
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
