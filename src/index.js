@@ -2,9 +2,32 @@ if (process.env.NODE_ENV != "production") require("dotenv").config();
 
 const cluster = require("cluster");
 const logger = require("./logger.js")();
+const duration = require("mp3-duration");
 
 if (cluster.isMaster) {
-  const servers = shuffleArray(Object.keys(require("./exports.js").servers));
+  let nowPlaying;
+  const exportsFile = require("./exports.js");
+  const nextSong = () => {
+    const music = exportsFile.music();
+    nowPlaying = music[Math.floor(Math.random() * music.length)];
+
+    for (const id in cluster.workers) {
+      cluster.workers[id].send(nowPlaying);
+    }
+    duration(nowPlaying, true, (err, duration) => {
+      err && logger.error(err);
+      setTimeout(() => {
+        nextSong();
+      }, duration * 1000 - 500);
+    });
+  };
+
+  nextSong();
+
+  module.exports = () => nowPlaying;
+  require("./discord.js");
+
+  const servers = shuffleArray(Object.keys(exportsFile.servers));
   logger.info(`Starting app in ${process.env.NODE_ENV} mode`);
 
   /**

@@ -1,7 +1,6 @@
 const mimeTypes = require("mime.json");
 const fs = require("graceful-fs");
 const exportsFile = require("./exports");
-const duration = require("mp3-duration");
 const LRU = require("lru-cache");
 
 let openStreams = 0;
@@ -12,21 +11,13 @@ const fileCache = new LRU({
   },
   maxAge: 1000 * 60 * 60,
 });
-let nowPlaying;
 
-const nextSong = () => {
-  const music = exportsFile.music();
-  nowPlaying = music[Math.floor(Math.random() * music.length)];
-  duration(nowPlaying, true, (err, duration) => {
-    err && logger.error(err);
-    console.log(duration);
-    setTimeout(() => {
-      nextSong();
-    }, duration * 1000 - 500);
-  });
-};
+const music = exportsFile.music();
+let nowPlaying = music[Math.floor(Math.random() * music.length)];
 
-nextSong();
+process.on("message", (message) => {
+  nowPlaying = message;
+});
 
 require("uWebSockets.js")
   .App()
